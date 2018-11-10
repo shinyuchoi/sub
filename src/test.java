@@ -1,25 +1,15 @@
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 
 public class test
 {
-    public static void main(String[] args)
+    public static void main(String[] args) throws Exception
     {
-        String st1 = "<SYNC START=645188> 이건 <font color=yellow>'스팅'</font>이야 \n";
-        String st = "aabbccddee";
-        String pattern = "^SYNC([\\S]|[\\s])*$";
-        String pattern2 = "^([\\S]|[\\s])*>([\\S]|[\\s])*$";
-        String pt = "aa";
+        FileIO fi = new FileIO("C:/Users/Choi/Desktop/test.smi");
 
-        StringTokenizer stk = new StringTokenizer(st1, "<");
-        while (stk.hasMoreTokens())
-        {
-            String tmp = stk.nextToken();
-            if(tmp.matches(pattern2))
-                System.out.println(tmp);
-        }
+        ArrayList<Integer> timeStamp = fi.getTimeStamp();
+        ArrayList<String> sub = fi.getSub();
 
-//        System.out.println(st1.replaceAll(pattern,""));
-        //   System.out.println(Pattern.matches(pattern,st1));
     }
 }
