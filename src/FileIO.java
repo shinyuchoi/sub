@@ -51,55 +51,55 @@ public class FileIO
             timeStamp.add(Integer.parseInt(tmp));
             pointerOne = str.indexOf("SYNC Start", pointerTwo);
             if (pointerOne != -1)
-                sub.add(str.substring(pointerTwo + 1, pointerOne));
+                sub.add(str.substring(pointerTwo + 1, pointerOne - 1));
             else
                 sub.add(str.substring(pointerTwo + 1, str.indexOf("</BODY>")));
-       }
+        }
     }
 
-        private String readFileToStringArray (String filePath) throws Exception
+    private String readFileToStringArray(String filePath) throws Exception
+    {
+
+        StringBuffer fileData = new StringBuffer();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "euc-kr"));
+
+        char[] buf = new char[1024];
+        int numRead = 0;
+        while ((numRead = reader.read(buf)) != -1)
         {
+            String readData = String.valueOf(buf, 0, numRead);
+            readData = readData.replaceAll("(\r\n|\r|\n|\n\r)", " ");
 
-            StringBuffer fileData = new StringBuffer();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "euc-kr"));
+            fileData.append(readData);
+        }
+        reader.close();
 
-            char[] buf = new char[1024];
-            int numRead = 0;
-            while ((numRead = reader.read(buf)) != -1)
+        return fileData.toString();
+    }
+
+
+    private static String readFileAsString(String filePath) throws IOException
+    {
+        StringBuffer fileData = new StringBuffer();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "euc-kr"));
+
+        char[] buf = new char[1024];
+        int numRead = 0;
+
+        //내가 추가
+        //
+
+        while ((numRead = reader.read(buf)) != -1)
+        {
+            String readData = String.valueOf(buf, 0, numRead);
+            readData = readData.replaceAll("(\r\n|\r|\n|\n\r)", " ").replace("<P Class=KRCC>", "").replace("&nbsp;", " . ");
+            if (readData.toUpperCase().indexOf("BODY") != -1)
             {
-                String readData = String.valueOf(buf, 0, numRead);
-                readData = readData.replaceAll("(\r\n|\r|\n|\n\r)", " ");
-
+                fileData.append(readData, readData.toUpperCase().indexOf("<SYNC START"), readData.length());
+            } else
                 fileData.append(readData);
-            }
-            reader.close();
-
-            return fileData.toString();
         }
-
-
-        private static String readFileAsString (String filePath) throws IOException
-        {
-            StringBuffer fileData = new StringBuffer();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "euc-kr"));
-
-            char[] buf = new char[1024];
-            int numRead = 0;
-
-            //내가 추가
-            //
-
-            while ((numRead = reader.read(buf)) != -1)
-            {
-                String readData = String.valueOf(buf, 0, numRead);
-                readData = readData.replaceAll("(\r\n|\r|\n|\n\r)", " ").replace("<P Class=KRCC>", "").replace("&nbsp;", " . ");
-                if (readData.toUpperCase().indexOf("BODY") != -1)
-                {
-                    fileData.append(readData, readData.toUpperCase().indexOf("<SYNC START"), readData.length());
-                } else
-                    fileData.append(readData);
-            }
-            reader.close();
-            return fileData.toString();
-        }
+        reader.close();
+        return fileData.toString();
     }
+}
