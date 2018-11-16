@@ -50,10 +50,11 @@ public class FileIO
 
             timeStamp.add(Integer.parseInt(tmp));
             pointerOne = str.indexOf("SYNC Start", pointerTwo);
+
             if (pointerOne != -1)
-                sub.add(str.substring(pointerTwo + 1, pointerOne - 1));
+                sub.add("<html>"+str.substring(pointerTwo + 1, pointerOne - 1)+"</html>");
             else
-                sub.add(str.substring(pointerTwo + 1, str.indexOf("</BODY>")));
+                sub.add("<html>"+str.substring(pointerTwo + 1, str.indexOf("</BODY>"))+"</html>");
         }
     }
 

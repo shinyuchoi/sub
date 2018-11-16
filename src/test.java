@@ -1,11 +1,15 @@
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
+
 class Clock extends Thread
 {
-    int i ;
+    int i;
+
     @Override
     public void run()
     {
-        i = 0 ;
+        i = 0;
         int sec = 0;
         try
         {
@@ -19,49 +23,76 @@ class Clock extends Thread
 
         }
     }
-}
-class MyThread extends Thread
-{
-    int i, pointer;
-    ArrayList<Integer> timeStamp;
-    ArrayList<String> sub;
 
-    MyThread(ArrayList<Integer> timeStamp, ArrayList<String> sub)
+    public int getI()
     {
-        i = 0;
-        this.timeStamp = timeStamp;
-        this.sub = sub;
-        pointer = 0;
-    }
-
-    @Override
-    public void run()
-    {
-        try
-        {
-            while (true)
-            {
-
-            }
-        } catch (Exception e)
-        {
-
-        }
+        return i;
     }
 }
 
-public class test
+
+public class test extends JFrame
 {
-    public static void main(String[] args) throws Exception
+    Container contentPane;
+    JLabel b1, b2, b3, b4;
+    enum language {KRCC, ENCC}
+
+    int fontSize;
+
+
+
+    String LabelsetText(String sub)
     {
+
+        return null;
+    }
+
+    test() throws Exception
+    {
+        setTitle("Swing Ex1");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        contentPane = getContentPane();
+        contentPane.setLayout(new FlowLayout());
+        setSize(500, 200);
+
+        setVisible(true);
+
+
+        b1 = new JLabel();
+        b1.setFont(new Font("Serif",Font.PLAIN,30));
+        b1.setText("hi");
+        contentPane.add(b1,JLabel.CENTER);
+
         FileIO fi = new FileIO("C:/Users/Choi/Desktop/test.smi");
 
         ArrayList<Integer> timeStamp = fi.getTimeStamp();
         ArrayList<String> sub = fi.getSub();
-        MyThread t = new MyThread(timeStamp, sub);
-        t.start();
+        int index = 0;
         Clock c = new Clock();
         c.start();
+
+        while (true)
+        {
+            if (index == timeStamp.size())
+                return;
+            if (timeStamp.get(index) < c.getI())
+            {
+                b1.setText(sub.get(index));
+                System.out.println(sub.get(index));
+                index++;
+                b1.repaint();
+            }
+
+
+            Thread.sleep(1);
+
+        }
+    }
+
+
+    public static void main(String[] args) throws Exception
+    {
+        new test();
     }
 
 }
