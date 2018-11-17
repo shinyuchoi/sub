@@ -8,33 +8,6 @@ import java.util.ArrayList;
 import javax.swing.event.*;
 
 
-class Clock extends Thread
-{
-    int i;
-
-    @Override
-    public void run()
-    {
-        i = 0;
-        int sec = 0;
-        try
-        {
-            while (true)
-            {
-                i++;
-                Thread.sleep(1);
-            }
-        } catch (Exception e)
-        {
-
-        }
-    }
-
-    public int getI()
-    {
-        return i;
-    }
-}
 
 
 public class test extends JFrame
@@ -75,8 +48,6 @@ public class test extends JFrame
         setBackground(new Color(0, 0, 0, 0));
         setVisible(true);
         //메뉴바
-        menu = menuBar();
-        setJMenuBar(menu);
 
 
         b1 = new JLabel();
@@ -117,23 +88,7 @@ public class test extends JFrame
         }
     }
 
-    JMenuBar menuBar()
-    {
-        JMenuBar jb = new JMenuBar();
 
-        JMenu open = new JMenu("Open");
-        JMenu slow = new JMenu("1초 느리게");
-        JMenu fast = new JMenu("1초 빠르게");
-        jb.add(open);
-        jb.add(slow);
-        jb.add(fast);
-
-
-        open.addMenuListener(new OpenFile());
-
-
-        return jb;
-    }
 
     private void create()
     {
@@ -155,33 +110,6 @@ public class test extends JFrame
 
     //menu
 
-    class OpenFile implements MenuListener
-    {
-        @Override
-        public void menuSelected(MenuEvent e)
-        {
-            JFrame window = new JFrame();
-            JFileChooser jfc = new JFileChooser();
-            jfc.setCurrentDirectory(new File(System.getProperty("user.home") + "//" + "Downloads"));
-            FileNameExtensionFilter filter = new FileNameExtensionFilter(".smi", "smi");
-            jfc.addChoosableFileFilter(filter);
-            int result = jfc.showOpenDialog(window);
-            if (result == jfc.APPROVE_OPTION)
-            {
-                File selectedFile = jfc.getSelectedFile();
-                filePath = selectedFile.toString();
-            }
-        }
 
-        @Override
-        public void menuDeselected(MenuEvent e)
-        {
-        }
-
-        @Override
-        public void menuCanceled(MenuEvent e)
-        {
-        }
-    }
 
 }
