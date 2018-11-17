@@ -8,11 +8,11 @@ import java.io.File;
 
 public class FileBrowserTest
 {
-    JLabel b1, b2, b3, b4;
+    JLabel[] labels;
+    JPanel[] panels;
     String filePath;
     JFrame jFrame;
-
-
+    int numOfLabels;
 
     JMenuBar menuBar()
     {
@@ -33,27 +33,51 @@ public class FileBrowserTest
     }
 
 
-
     public FileBrowserTest()
     {
-        jFrame = new JFrame("frame");
+        numOfLabels = 20;
+
+        jFrame = new JFrame();
         jFrame.setUndecorated(true);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jFrame.setLayout(new GridLayout(numOfLabels, 1));
         jFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         jFrame.setBackground(Color.white);
         jFrame.setVisible(true);
 
-        
-        b1 = new JLabel();
-        b1.setText("hi");
-        b1.setBackground(Color.red);
-        b1.setSize(300,300);
+        labels = new JLabel[numOfLabels];
+        panels = new JPanel[numOfLabels];
 
-        jFrame.add(b1);
-        b1.setLocation(100,100);
+        for (int i = 0; i < numOfLabels; i++)
+        {
+            labels[i] = new JLabel("",SwingConstants.CENTER);
+            panels[i] = new JPanel();
+
+            if(i%2==0)
+                labels[i].setBackground(new Color(220,220,220));
+            else
+                labels[i].setBackground(new Color(195,195,195));
+
+        }
+        labels[18].setBackground(Color.red);
+        labels[18].setText("<html><h1><font color='red'>^__^__^__^__^__^__^__^__^__^__^__^__^__^__^__^__^__^__^__^__</font></h1></html>");
 
 
-        jFrame.setBackground(new Color(0,0,0,0));
+
+        for (int i = 0; i < numOfLabels; i++)
+        {
+            jFrame.add(labels[i]);
+        }
+
+
+        try
+        {
+            Thread.sleep(1000);
+        } catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+        jFrame.setBackground(new Color(0, 0, 0, 0));
     }
 
 
@@ -61,7 +85,6 @@ public class FileBrowserTest
     {
         new FileBrowserTest();
     }
-
 
 
     class OpenFile implements MenuListener
@@ -92,24 +115,4 @@ public class FileBrowserTest
         {
         }
     }
-
-
-/*
-        JFrame window = new JFrame();
-
-        JFileChooser jfc = new JFileChooser();
-
-        jfc.setCurrentDirectory(new File(System.getProperty("user.home") + "//" + "Downloads"));
-        FileNameExtensionFilter filter = new FileNameExtensionFilter(".smi", "smi");
-        jfc.addChoosableFileFilter(filter);
-
-        int result = jfc.showOpenDialog(window);
-        System.out.println(result);
-
-        if (result == jfc.APPROVE_OPTION) {
-            File selectedFile = jfc.getSelectedFile();
-            System.out.println(selectedFile);
-        }*/
-
-
 }
