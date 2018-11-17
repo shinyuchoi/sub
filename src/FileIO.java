@@ -49,12 +49,14 @@ public class FileIO
             tmp = tmp.replace(" ", "");
 
             timeStamp.add(Integer.parseInt(tmp));
+
+            
             pointerOne = str.indexOf("SYNC Start", pointerTwo);
 
             if (pointerOne != -1)
-                sub.add("<html>"+str.substring(pointerTwo + 1, pointerOne - 1)+"</html>");
+                sub.add("<html><strong><font color=white>"+str.substring(pointerTwo + 1, pointerOne - 1)+"</html>");
             else
-                sub.add("<html>"+str.substring(pointerTwo + 1, str.indexOf("</BODY>"))+"</html>");
+                sub.add("<html><strong><font color=white>"+str.substring(pointerTwo + 1, str.indexOf("</BODY>"))+"</font></strong></html>");
         }
     }
 
