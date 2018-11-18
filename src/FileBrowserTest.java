@@ -60,7 +60,7 @@ public class FileBrowserTest
 
         }
         labels[18].setBackground(Color.red);
-        labels[18].setText("<html><h1><font color='red'>^__^__^__^__^__^__^__^__^__^__^__^__^__^__^__^__^__^__^__^__</font></h1></html>");
+        labels[18].setText("<html><h1><font color='red'>^__^__^__^__^__^__^__^__^__^__^__^__^__^__^__^__^__^__^__^__</font></div></h1></html>");
 
 
 
