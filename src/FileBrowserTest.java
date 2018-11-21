@@ -3,16 +3,20 @@ import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 
 
 public class FileBrowserTest
 {
-    JLabel[] labels;
-    JPanel[] panels;
     String filePath;
+    JLabel label;
     JFrame jFrame;
-    int numOfLabels;
+    JPanel panel;
+    JButton openButton;
+
+    int numOfLabels, panelX, panelY;
 
     JMenuBar menuBar()
     {
@@ -26,53 +30,58 @@ public class FileBrowserTest
         jb.add(fast);
 
 
-        open.addMenuListener(new OpenFile());
 
 
         return jb;
     }
 
+    void initatFrame()
+    {
+        jFrame = new JFrame();
+        jFrame.setUndecorated(true);
+        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jFrame.setLayout(null);
+        jFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        jFrame.setBackground(Color.white);
+        jFrame.setVisible(true);
+
+        label = new JLabel("<html><h1> &lt;자막__위치> </h1></html>", SwingConstants.CENTER);
+
+        openButton = new JButton("Open");
+        openButton.setSize(100,50);
+        jFrame.add(openButton);
+        openButton.setLocation(jFrame.getWidth()-500,100);
+        openButton.addMouseListener(new OpenFile());
+
+
+        panel = new JPanel();
+        panel.add(label);
+        jFrame.add(panel);
+
+        panel.setBackground(new Color(0, 0, 0, 0));
+        panel.setSize(500, 200);
+        label.setSize(panel.getHeight(),panel.getWidth());
+        panelX = (jFrame.getWidth() - label.getText().length() * (3)) / 2;
+        panelY = 300;
+        panel.setLocation(panelX, panelY);
+        
+    }
 
     public FileBrowserTest()
     {
         numOfLabels = 20;
 
-        jFrame = new JFrame();
-        jFrame.setUndecorated(true);
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.setLayout(new GridLayout(numOfLabels, 1));
-        jFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        jFrame.setBackground(Color.white);
-        jFrame.setVisible(true);
-
-        labels = new JLabel[numOfLabels];
-        panels = new JPanel[numOfLabels];
-
-        for (int i = 0; i < numOfLabels; i++)
-        {
-            labels[i] = new JLabel("",SwingConstants.CENTER);
-            panels[i] = new JPanel();
-
-            if(i%2==0)
-                labels[i].setBackground(new Color(220,220,220));
-            else
-                labels[i].setBackground(new Color(195,195,195));
-
-        }
-        labels[18].setBackground(Color.red);
-        labels[18].setText("<html><h1><font color='red'>^__^__^__^__^__^__^__^__^__^__^__^__^__^__^__^__^__^__^__^__</font></div></h1></html>");
+        initatFrame();
 
 
 
-        for (int i = 0; i < numOfLabels; i++)
-        {
-            jFrame.add(labels[i]);
-        }
+
+
 
 
         try
         {
-            Thread.sleep(1000);
+            Thread.sleep(2000);
         } catch (InterruptedException e)
         {
             e.printStackTrace();
@@ -87,10 +96,10 @@ public class FileBrowserTest
     }
 
 
-    class OpenFile implements MenuListener
+    class OpenFile implements MouseListener
     {
         @Override
-        public void menuSelected(MenuEvent e)
+        public void mouseClicked(MouseEvent e)
         {
             JFrame window = new JFrame();
             JFileChooser jfc = new JFileChooser();
@@ -102,17 +111,20 @@ public class FileBrowserTest
             {
                 File selectedFile = jfc.getSelectedFile();
                 filePath = selectedFile.toString();
+                System.out.println(filePath);
             }
         }
 
         @Override
-        public void menuDeselected(MenuEvent e)
-        {
-        }
+        public void mousePressed(MouseEvent e){}
 
         @Override
-        public void menuCanceled(MenuEvent e)
-        {
-        }
+        public void mouseReleased(MouseEvent e){}
+
+        @Override
+        public void mouseEntered(MouseEvent e){}
+        @Override
+        public void mouseExited(MouseEvent e){}
+
     }
 }

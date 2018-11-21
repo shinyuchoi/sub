@@ -32,6 +32,12 @@ public class FileIO
         String str = dataIntoOneLine(path_win);
     }
 
+
+    /*
+    *   input>> *.smi filePath
+    *   output>> sub,timeStamp Array
+    */
+
     private void smiToString(String path_win) throws Exception
     {
 
