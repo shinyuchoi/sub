@@ -18,22 +18,7 @@ public class FileBrowserTest
 
     int numOfLabels, panelX, panelY;
 
-    JMenuBar menuBar()
-    {
-        JMenuBar jb = new JMenuBar();
 
-        JMenu open = new JMenu("Open");
-        JMenu slow = new JMenu("1초 느리게");
-        JMenu fast = new JMenu("1초 빠르게");
-        jb.add(open);
-        jb.add(slow);
-        jb.add(fast);
-
-
-
-
-        return jb;
-    }
 
     void initatFrame()
     {
@@ -64,7 +49,7 @@ public class FileBrowserTest
         panelX = (jFrame.getWidth() - label.getText().length() * (3)) / 2;
         panelY = 300;
         panel.setLocation(panelX, panelY);
-        
+
     }
 
     public FileBrowserTest()
@@ -112,6 +97,7 @@ public class FileBrowserTest
                 File selectedFile = jfc.getSelectedFile();
                 filePath = selectedFile.toString();
                 System.out.println(filePath);
+
             }
         }
 
