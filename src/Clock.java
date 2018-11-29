@@ -1,22 +1,19 @@
 class Clock extends Thread
 {
-    long i, curr;
 
-    Clock(long curr)
-    {
-        this.curr = curr;
-    }
+    private long i;
+
 
     @Override
     public void run()
     {
-        i = 0;
-        int sec = 0;
+        long curr = System.currentTimeMillis();
+
         try
         {
             while (true)
             {
-                i = curr - System.currentTimeMillis();
+                i = System.currentTimeMillis() - curr;
                 Thread.sleep(1);
             }
         } catch (Exception e)
@@ -25,8 +22,14 @@ class Clock extends Thread
         }
     }
 
-    public long getI()
+    long getI()
     {
         return i;
     }
+
+    void setI(long i)
+    {
+        this.i = i;
+    }
+
 }

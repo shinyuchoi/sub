@@ -41,7 +41,6 @@ public class FileIO
     private void smiToString(String path_win) throws Exception
     {
 
-        //String path_win = "C:/Users/Choi/Desktop/test.smi";
 
 
         sub = new ArrayList<String>();
@@ -66,9 +65,9 @@ public class FileIO
             pointerOne = str.indexOf("SYNC Start", pointerTwo);
 
             if (pointerOne != -1)
-                sub.add("<html><strong><font color=white>" + str.substring(pointerTwo + 1, pointerOne - 1) + "</html>");
+                sub.add("<html><strong><font size = 30 color=white>" + str.substring(pointerTwo + 1, pointerOne - 1) + "</html>");
             else
-                sub.add("<html><strong><font color=white>" + str.substring(pointerTwo + 1, str.indexOf("</BODY>")) + "</font></strong></html>");
+                sub.add("<html><strong><font size = 30 color=white>" + str.substring(pointerTwo + 1, str.indexOf("</BODY>")) + "</font></strong></html>");
         }
     }
 
