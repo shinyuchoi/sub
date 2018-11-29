@@ -65,9 +65,9 @@ public class FileIO
             pointerOne = str.indexOf("SYNC Start", pointerTwo);
 
             if (pointerOne != -1)
-                sub.add("<html><strong><font size = 30 color=white>" + str.substring(pointerTwo + 1, pointerOne - 1) + "</html>");
+                sub.add( str.substring(pointerTwo + 1, pointerOne - 1));
             else
-                sub.add("<html><strong><font size = 30 color=white>" + str.substring(pointerTwo + 1, str.indexOf("</BODY>")) + "</font></strong></html>");
+                sub.add(str.substring(pointerTwo + 1, str.indexOf("</BODY>")));
         }
     }
 
