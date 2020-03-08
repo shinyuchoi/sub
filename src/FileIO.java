@@ -1,52 +1,44 @@
+import org.mozilla.universalchardet.UniversalDetector;
+
 import java.io.*;
 import java.util.ArrayList;
 
-public class FileIO
-{
+
+public class FileIO {
 
 
-    private ArrayList<String> sub;
-    private ArrayList<Integer> timeStamp;
+    static private ArrayList<String> sub;
+    static private ArrayList<Integer> timeStamp;
 
-    public ArrayList<String> getSub()
-    {
-        return sub;
+    //파일을 읽어서 한줄로 만들어줌
+    static String fileToOneLine(String filePath) throws Exception {
+
+        //file path
+        File file = new File(filePath);
+        //Charset of subtitle
+        String subCharset = new UniversalDetector().detectCharset(file);
+        System.out.println(subCharset);
+
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), subCharset));
+
+        String line = "";
+        String result = "";
+        while ((line = bufferedReader.readLine()) != null) {
+            line.replaceAll("(\r\n|\r|\n|\n\r)", " ");
+            result += line;
+        }
+        bufferedReader.close();
+
+        return result;
     }
 
-    public ArrayList<Integer> getTimeStamp()
-    {
-        return timeStamp;
-    }
 
-
-    FileIO(String filePath) throws Exception
-    {
-        smiToString(filePath);
-    }
-
-    private void srtToString(String path_win) throws Exception
+    static void smiToString(String path_win) throws Exception
     {
         sub = new ArrayList<String>();
         timeStamp = new ArrayList<Integer>();
 
-        String str = dataIntoOneLine(path_win);
-    }
-
-
-    /*
-    *   input>> *.smi filePath
-    *   output>> sub,timeStamp Array
-    */
-
-    private void smiToString(String path_win) throws Exception
-    {
-
-
-
-        sub = new ArrayList<String>();
-        timeStamp = new ArrayList<Integer>();
-
-        String str = dataIntoOneLine(path_win);
+        String str = fileToOneLine(path_win);
         int startPoint = str.toUpperCase().indexOf("<BODY>");
 
         int pointerOne = str.indexOf("SYNC Start", startPoint);
@@ -65,30 +57,27 @@ public class FileIO
             pointerOne = str.indexOf("SYNC Start", pointerTwo);
 
             if (pointerOne != -1)
-                sub.add( str.substring(pointerTwo + 1, pointerOne - 1));
+                sub.add("<html><strong><font size =80 color=white>"+ str.substring(pointerTwo + 1, pointerOne - 1)+ "</font> </html>");
             else
-                sub.add(str.substring(pointerTwo + 1, str.indexOf("</BODY>")));
+                sub.add("<html><strong><font size =80 color=white>"+str.substring(pointerTwo + 1, str.indexOf("</BODY>"))+" </font> </html>");
         }
     }
 
-    private String dataIntoOneLine(String filePath) throws Exception
-    {
-
-        StringBuffer fileData = new StringBuffer();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "euc-kr"));
-
-        char[] buf = new char[1024];
-        int numRead = 0;
-        while ((numRead = reader.read(buf)) != -1)
-        {
-            String readData = String.valueOf(buf, 0, numRead);
-            readData = readData.replaceAll("(\r\n|\r|\n|\n\r)", " ");
-
-            fileData.append(readData);
+    static void test() throws Exception {
+        File[] files = new File("sample\\").listFiles();
+        for (File f : files) {
+            smiToString(f.getAbsolutePath());
         }
-        reader.close();
 
-        return fileData.toString();
     }
 
+    public static void main(String[] args) throws Exception {
+        String fP = "2.smi";
+        smiToString(fP);
+        System.out.println(sub.size());
+        System.out.println(timeStamp.size());
+        test();
+
+
+    }
 }
