@@ -1,27 +1,29 @@
 import org.mozilla.universalchardet.UniversalDetector;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-
 
 public class FileIO {
 
 
-    static private ArrayList<String> sub;
-    static private ArrayList<Integer> timeStamp;
+    private ArrayList<String> sub;
+    private ArrayList<String> subUnder;
+    private ArrayList<Integer> timeStamp;
 
     //파일을 읽어서 한줄로 만들어줌
-    static String fileToOneLine(String filePath) throws Exception {
+    String fileToOneLine(String filePath) throws Exception {
 
         //file path
         File file = new File(filePath);
         //Charset of subtitle
         String subCharset = new UniversalDetector().detectCharset(file);
-        System.out.println(subCharset);
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), subCharset));
 
-        String line = "";
+        String line;
         String result = "";
         while ((line = bufferedReader.readLine()) != null) {
             line.replaceAll("(\r\n|\r|\n|\n\r)", " ");
@@ -32,52 +34,67 @@ public class FileIO {
         return result;
     }
 
+    void sim2Array(String path_win) throws Exception {
+        sub = new ArrayList<>();
+        timeStamp = new ArrayList<>();
+        subUnder = new ArrayList<>();
 
-    static void smiToString(String path_win) throws Exception
-    {
+        String[] str = fileToOneLine(path_win).split("[sS][yY][Nn][Cc] [sS][tT][aA][rR][tT]");
+        String[] sTmp;
+        for (String s : str) {
+            s = s.substring(1, s.length() - 1);
+            str = s.split(">");
+            str[1] = str[1].toUpperCase();
+            if ((str[0].matches("[0-9]*") && (str[1].contains("KRCC")))) {
+                if (str.length == 4) {
+                    timeStamp.add(Integer.parseInt(str[0].trim()));
+                    sub.add(str[str.length - 2].replace("<br", "").replace("<i", ""));
+                    subUnder.add(str[str.length - 1]);
+                } else {
+                    timeStamp.add(Integer.parseInt(str[0].trim()));
+                    sub.add(str[str.length - 1]);
+                    subUnder.add(" ");
+                }
+
+            }
+        }
+
+
+    }
+
+
+    void srt2Array(String path_win) throws Exception {
         sub = new ArrayList<String>();
         timeStamp = new ArrayList<Integer>();
+        //file path
+        File file = new File(path_win);
+        //Charset of subtitle
+        String subCharset = new UniversalDetector().detectCharset(file);
 
-        String str = fileToOneLine(path_win);
-        int startPoint = str.toUpperCase().indexOf("<BODY>");
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(path_win), subCharset));
 
-        int pointerOne = str.indexOf("SYNC Start", startPoint);
-        while (pointerOne != -1)
-        {
-            pointerOne = str.indexOf("=", pointerOne);
-            int pointerTwo = str.indexOf(">", pointerOne);
+        String line = "";
+        int i = 1;
+        while ((line = bufferedReader.readLine()) != null) {
+            while (!line.trim().equals(i + "")) {
+                bufferedReader.readLine();
+            }
 
-
-            String tmp = str.substring(pointerOne + 1, pointerTwo);
-            tmp = tmp.replace(" ", "");
-
-            timeStamp.add(Integer.parseInt(tmp));
-
-
-            pointerOne = str.indexOf("SYNC Start", pointerTwo);
-
-            if (pointerOne != -1)
-                sub.add("<html><strong><font size =80 color=white>"+ str.substring(pointerTwo + 1, pointerOne - 1)+ "</font> </html>");
-            else
-                sub.add("<html><strong><font size =80 color=white>"+str.substring(pointerTwo + 1, str.indexOf("</BODY>"))+" </font> </html>");
         }
+        bufferedReader.close();
     }
 
-    static void test() throws Exception {
-        File[] files = new File("sample\\").listFiles();
-        for (File f : files) {
-            smiToString(f.getAbsolutePath());
-        }
-
+    public ArrayList<String> getSubUnder() {
+        return subUnder;
     }
 
-    public static void main(String[] args) throws Exception {
-        String fP = "2.smi";
-        smiToString(fP);
-        System.out.println(sub.size());
-        System.out.println(timeStamp.size());
-        test();
-
-
+    public ArrayList<Integer> getTimeStamp() {
+        return timeStamp;
     }
+
+    public ArrayList<String> getSub() {
+        return sub;
+    }
+
+
 }

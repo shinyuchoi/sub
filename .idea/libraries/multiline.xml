@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="multiline">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/multiline.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

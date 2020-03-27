@@ -1,5 +1,9 @@
-public class main {
-    public static void main(String[] args) {
-        UI ui = new UI();
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        new UI();
+
+
     }
 }
