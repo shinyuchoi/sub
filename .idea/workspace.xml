@@ -7,24 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="36eac36c-c77d-491a-9bd7-fe0a6cefb3ac" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/subPlayer2_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/subPlayer_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/subPlayer2_jar/subPlayer.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/subPlayer2_jar/subPlayer2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/subPlayer2_jar/subPlayer_LowV.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/subPlayer2_jar/subPlayer_LowVersion.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/subPlayer2/FileIO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/subPlayer2/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/subPlayer2/SubThread.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/subPlayer2/TimeControllerJOptional.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/subPlayer2/UI$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/subPlayer2/UI$OpenFile.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/subPlayer2/UI.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/subPlayer2/popupMenus.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/subPlayer_jar/subPlayer.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/subPlayer_jar/subPlayer.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/subPlayer/UI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/subPlayer/UI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/subPlayer2/META-INF/MANIFEST.MF" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/popupMenus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/popupMenus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/subPlayer2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/subPlayer.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,53 +67,6 @@
     <configuration name="SwingTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="SwingTest" />
       <module name="subPlayer" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="subPlayer" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="subPlayer" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -188,30 +128,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="557" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1585295457424" />
-    <state width="1879" height="166" key="GridCell.Tab.0.bottom" timestamp="1586652737380">
+    <state width="1879" height="166" key="GridCell.Tab.0.bottom" timestamp="1586652971538">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1038" height="162" key="GridCell.Tab.0.bottom/0.0.1080.1880@0.0.1080.1880" timestamp="1586626311896" />
     <state width="1879" height="144" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1483.1072@0.0.1920.1040" timestamp="1585734288591" />
-    <state width="1879" height="166" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586652737380" />
-    <state width="1879" height="166" key="GridCell.Tab.0.center" timestamp="1586652737380">
+    <state width="1879" height="166" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586652971538" />
+    <state width="1879" height="166" key="GridCell.Tab.0.center" timestamp="1586652971538">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1038" height="162" key="GridCell.Tab.0.center/0.0.1080.1880@0.0.1080.1880" timestamp="1586626311895" />
     <state width="1879" height="144" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1483.1072@0.0.1920.1040" timestamp="1585734288591" />
-    <state width="1879" height="166" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586652737380" />
-    <state width="1879" height="166" key="GridCell.Tab.0.left" timestamp="1586652737380">
+    <state width="1879" height="166" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586652971538" />
+    <state width="1879" height="166" key="GridCell.Tab.0.left" timestamp="1586652971538">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1038" height="162" key="GridCell.Tab.0.left/0.0.1080.1880@0.0.1080.1880" timestamp="1586626311895" />
     <state width="1879" height="144" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1483.1072@0.0.1920.1040" timestamp="1585734288591" />
-    <state width="1879" height="166" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586652737380" />
-    <state width="1879" height="166" key="GridCell.Tab.0.right" timestamp="1586652737380">
+    <state width="1879" height="166" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586652971538" />
+    <state width="1879" height="166" key="GridCell.Tab.0.right" timestamp="1586652971538">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1038" height="162" key="GridCell.Tab.0.right/0.0.1080.1880@0.0.1080.1880" timestamp="1586626311896" />
     <state width="1879" height="144" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1483.1072@0.0.1920.1040" timestamp="1585734288591" />
-    <state width="1879" height="166" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586652737380" />
+    <state width="1879" height="166" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586652971538" />
     <state width="1879" height="185" key="GridCell.Tab.1.bottom" timestamp="1586650660233">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

@@ -32,7 +32,7 @@ public class UI extends JFrame {
     String help = "1. 글씨 크기와 자막 위치를 조절합니다. \n플레이 중에도 우클릭으로 메뉴를 열어 조절 할 수 있습니다." +
             "\n2. 열기 버튼을 클릭 후, 자막 파일을 선택합니다. 현재 지원 자막:smi\n" +
             "3. 즐겁게 감상합니다.\n\n\n버그 및 에러 제보: shinyu.choi@tum.de\nVersion 1.0\nCopyright (c) 2020, Choi shin-yu \n" +
-            "All rights reserved.";
+            "All rights reserved. ";
 
     UI() {
         initValues();
