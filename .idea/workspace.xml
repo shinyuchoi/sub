@@ -7,12 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="36eac36c-c77d-491a-9bd7-fe0a6cefb3ac" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/subPlayer_jar/subPlayer.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/subPlayer_jar/subPlayer.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileIO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SubThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SubThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TimeControllerJOptional.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TimeControllerJOptional.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/popupMenus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/popupMenus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/subPlayer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/subPlayer.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
