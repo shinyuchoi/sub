@@ -30,7 +30,6 @@ public class FileIO {
             result += line;
         }
         bufferedReader.close();
-
         return result;
     }
 
@@ -40,7 +39,6 @@ public class FileIO {
         subUnder = new ArrayList<>();
 
         String[] str = fileToOneLine(path_win).split("[sS][yY][Nn][Cc] [sS][tT][aA][rR][tT]");
-        String[] sTmp;
         for (String s : str) {
             s = s.substring(1, s.length() - 1);
             str = s.split(">");
@@ -58,7 +56,6 @@ public class FileIO {
 
             }
         }
-
 
     }
 

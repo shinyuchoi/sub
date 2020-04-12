@@ -1,66 +1,156 @@
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 public class SubThread implements Runnable {
 
     UI ui;
+    long startTime;
+    long timeControl;
+    long pauseTime;
+    ArrayList<String> sub, subUnder;
+    ArrayList<Integer> timeStamp;
 
+    long playingTime;
+    int subIndex;
+    boolean indicatorInfolabel;
 
     SubThread(UI ui) {
         this.ui = ui;
     }
 
+    FileIO fileIO;
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    String filePath;
+
     @Override
     public void run() {
-        while (ui.getFilePath() == null) {
+        fileIO = new FileIO();
+        try {
+            fileIO.sim2Array(filePath);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        sub = fileIO.getSub();
+        subUnder = fileIO.getSubUnder();
+        timeStamp = fileIO.getTimeStamp();
+
+
+        timeControl = 0;
+        startTime = System.currentTimeMillis();
+        subIndex = 0;
+
+        if (timeStamp.size() == 0) {
             try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
+                ui.restart(3);
+            } catch (InterruptedException | IOException | URISyntaxException e) {
                 e.printStackTrace();
             }
         }
 
-        ui.timeControl = 0;
-        ArrayList<String> sub = ui.sub;
-        ArrayList<String> subUnder = ui.subUnder;
-        ArrayList<Integer> timeStamp = ui.timeStamp;
-        ui.setIndex(0);
-        ui.startTime = System.currentTimeMillis();
-        long startTime = ui.startTime;
-        long tmpTime;
 
-        int i;
-        ui.setTextLabels("파일을 성공적으로", "읽었습니다.");
+        ui.setTextLabels(filePath, "파일을 성공적으로 읽었습니다.");
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        ui.setTextLabels("", "");
+        int counter = 0;
+        ui.isTransparent = true;
+        ui.removeButtons();
         ui.removeLabels();
-
-        while (ui.isPlaying()) {
+        while (true) {
             try {
-                Thread.sleep(5);
+                Thread.sleep(1);
             } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            i = ui.getIndex();
-            tmpTime = System.currentTimeMillis();
-            if (timeStamp.get(i) + ui.timeControl < tmpTime - startTime) {
+                return;
 
-                if (sub.get(i).trim().equals("&nbsp;")) {
-                    ui.setTextLabels(" ", ".");
-                } else {
-                    ui.setTextLabels(sub.get(i), subUnder.get(i));
-                }
-                ui.jFrame.repaint();
-                //index++;
-                ui.indexPlusPlus();
-                if (i == timeStamp.size() - 1) {
-                    try {
-                        Thread.sleep(20000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+            }
+            if (ui.isPlaying()) {
+
+                setPlayingtime(System.currentTimeMillis());
+
+                if (timeStamp.get(subIndex) < getPlayingTime()) {
+
+
+                    if (sub.get(subIndex).trim().equals("&nbsp;")) {
+                        ui.setTextLabels(" ", " ");
+                    } else {
+                        ui.setTextLabels(sub.get(subIndex), subUnder.get(subIndex));
                     }
-                    return;
+                    ui.jFrame.repaint();
+
+                    subIndex++;
+
+                    if (subIndex == timeStamp.size() - 1) {
+                        try {
+                            ui.restart(5);
+                        } catch (InterruptedException | IOException | URISyntaxException e) {
+                            e.printStackTrace();
+                        }
+                        return;
+                    }
+                }
+                if (indicatorInfolabel) {
+                    ui.infoLabel.setText("싱크: " + (timeControl / 1000) + "초");
+                    counter++;
+                    if (counter == 3000) {
+                        indicatorInfolabel = false;
+                        counter = 0;
+                    }
+
+                } else {
+                    ui.infoLabel.setText("");
                 }
             }
 
         }
-        System.out.println("끝");
+
+    }
+
+    public void addPauseTime(long pauseTime) {
+        this.pauseTime += pauseTime;
+    }
+
+    public void syncConrol(int n) {
+        if (ui.isPlaying()) {
+
+            timeControl += (n * 1000);
+            arrangeIndex();
+            ui.infoLabel.setText("싱크: " + (timeControl / 1000) + "초");
+            indicatorInfolabel = true;
+
+        }
+    }
+
+    public long getPlayingTime() {
+        return timeControl + playingTime - startTime - pauseTime;
+    }
+
+    public void setPlayingtime(long playingTime) {
+        this.playingTime = playingTime;
+    }
+
+    public void arrangeIndex() {
+
+        for (int i = 0; i < timeStamp.size(); i++) {
+            if (timeStamp.get(i) > getPlayingTime()) {
+                subIndex = i;
+                break;
+            }
+        }
+        if (sub.get(subIndex).trim().equals("&nbsp;")) {
+            ui.setTextLabels(" ", " ");
+        } else {
+            ui.setTextLabels(sub.get(subIndex), subUnder.get(subIndex));
+        }
+        ui.jFrame.repaint();
     }
 }
