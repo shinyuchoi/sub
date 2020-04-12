@@ -33,9 +33,10 @@ public class TimeControllerJOptional implements ActionListener {
             if (jOptionPane.showConfirmDialog(ui, new Object[]{currentPlayTimeLabel, getSlider(),}, "플레이타임 설정", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
                 if (ui.subThread.getPlayingTime() > v) {
                     ui.subThread.timeControl -= Math.abs(ui.subThread.getPlayingTime() - v);
-                } else {
+                } else if (ui.subThread.getPlayingTime() < v) {
                     ui.subThread.timeControl += Math.abs(ui.subThread.getPlayingTime() - v);
                 }
+
             }
             ui.subThread.arrangeIndex();
             ui.setPlaying(true);
@@ -62,6 +63,7 @@ public class TimeControllerJOptional implements ActionListener {
 
         }
         slider.setValue((int) ui.subThread.getPlayingTime());
+        v = slider.getValue();
         slider.setPaintLabels(true);
         slider.setLabelTable(position);
         slider.setMajorTickSpacing(300000);

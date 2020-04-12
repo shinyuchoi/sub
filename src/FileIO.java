@@ -70,13 +70,14 @@ public class FileIO {
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(path_win), subCharset));
 
-        String line = "";
+        String line;
+        String result = "";
         int i = 1;
         while ((line = bufferedReader.readLine()) != null) {
             while (!line.trim().equals(i + "")) {
                 bufferedReader.readLine();
             }
-
+            result += line;
         }
         bufferedReader.close();
     }

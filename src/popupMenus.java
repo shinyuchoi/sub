@@ -22,8 +22,10 @@ public class popupMenus extends JPopupMenu {
         jMenu.add(jMenu1);
     }
 
+
     popupMenus(UI ui) {
         this.ui = ui;
+
 
 
         add(addMenu("초기화", evt -> {
@@ -36,6 +38,11 @@ public class popupMenus extends JPopupMenu {
             }
         }));
         addSeparator();
+        addSeparator();
+        add(addMenu("일시정지/시간조절", new TimeControllerJOptional(ui)));
+        addSeparator();
+        addSeparator();
+
 
         add(addMenu("싱크표시/해제", evt -> {
             ui.subThread.indicatorInfolabel = !ui.subThread.indicatorInfolabel;
@@ -65,8 +72,6 @@ public class popupMenus extends JPopupMenu {
         }));
 
 
-        add(addMenu("시간조절", new TimeControllerJOptional(ui)));
-        addSeparator();
         addSeparator();
 
 
@@ -76,7 +81,6 @@ public class popupMenus extends JPopupMenu {
 
         addSeparator();
         addSeparator();
-
 
 
         add(addMenu("사용법/도움말", e -> {
@@ -104,6 +108,10 @@ public class popupMenus extends JPopupMenu {
             ui.subThread.syncConrol(-1);
         });
 
+        addSubMenu(jMenu, "-0.5초", e -> {
+            ui.subThread.syncConrol(-0.5);
+        });
+
         addSubMenu(jMenu, "싱크리셋", e -> {
             if (ui.isPlaying()) {
                 ui.subThread.timeControl = 0;
@@ -113,6 +121,10 @@ public class popupMenus extends JPopupMenu {
             }
         });
 
+        addSubMenu(jMenu, "+0.5초", e -> {
+            ui.subThread.syncConrol(0.5);
+
+        });
         addSubMenu(jMenu, "+1초", e -> {
             ui.subThread.syncConrol(1);
 

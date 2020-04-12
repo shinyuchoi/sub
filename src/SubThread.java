@@ -112,14 +112,13 @@ public class SubThread implements Runnable {
             }
 
         }
-
     }
 
     public void addPauseTime(long pauseTime) {
         this.pauseTime += pauseTime;
     }
 
-    public void syncConrol(int n) {
+    public void syncConrol(double n) {
         if (ui.isPlaying()) {
 
             timeControl += (n * 1000);
