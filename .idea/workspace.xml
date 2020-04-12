@@ -2,31 +2,29 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="subPlayer2:jar" />
+      <artifact name="subPlayer:jar" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="36eac36c-c77d-491a-9bd7-fe0a6cefb3ac" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/subPlayer2_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TimeControllerJOptional.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/subPlayer2_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/subPlayer_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/subPlayer2/FileIO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/subPlayer2/FileIO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/subPlayer2/META-INF/subPlayer2.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/subPlayer2/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/subPlayer2/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/subPlayer2/SubThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/subPlayer2/SubThread.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/subPlayer2/UI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/subPlayer2/UI$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/subPlayer2/UI$OpenFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/subPlayer2/UI$OpenFile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/subPlayer2/UI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/subPlayer2/UI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/subPlayer2/keyInputs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileIO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SubThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SubThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/subPlayer2_jar/subPlayer.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/subPlayer2_jar/subPlayer2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/subPlayer2_jar/subPlayer_LowV.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/subPlayer2_jar/subPlayer_LowVersion.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/subPlayer2/FileIO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/subPlayer2/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/subPlayer2/SubThread.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/subPlayer2/TimeControllerJOptional.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/subPlayer2/UI$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/subPlayer2/UI$OpenFile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/subPlayer2/UI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/subPlayer2/popupMenus.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/keyInputs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/popupMenus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/subPlayer2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/subPlayer2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/popupMenus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/popupMenus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/subPlayer2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/subPlayer.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,12 +50,13 @@
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
@@ -73,14 +72,61 @@
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="subPlayer2" />
+      <module name="subPlayer" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="SwingTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="SwingTest" />
-      <module name="subPlayer2" />
+      <module name="subPlayer" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="subPlayer" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="subPlayer" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -105,10 +151,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="552" y="178" key="#Project_Structure" timestamp="1585530658323">
+    <state x="552" y="178" key="#Project_Structure" timestamp="1586651741716">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="178" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1585530658323" />
+    <state x="552" y="178" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1586651741716" />
     <state x="690" y="275" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1586611808764">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -142,30 +188,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="557" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1585295457424" />
-    <state width="1879" height="185" key="GridCell.Tab.0.bottom" timestamp="1586650660233">
+    <state width="1879" height="166" key="GridCell.Tab.0.bottom" timestamp="1586652737380">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1038" height="162" key="GridCell.Tab.0.bottom/0.0.1080.1880@0.0.1080.1880" timestamp="1586626311896" />
     <state width="1879" height="144" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1483.1072@0.0.1920.1040" timestamp="1585734288591" />
-    <state width="1879" height="185" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586650660233" />
-    <state width="1879" height="185" key="GridCell.Tab.0.center" timestamp="1586650660233">
+    <state width="1879" height="166" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586652737380" />
+    <state width="1879" height="166" key="GridCell.Tab.0.center" timestamp="1586652737380">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1038" height="162" key="GridCell.Tab.0.center/0.0.1080.1880@0.0.1080.1880" timestamp="1586626311895" />
     <state width="1879" height="144" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1483.1072@0.0.1920.1040" timestamp="1585734288591" />
-    <state width="1879" height="185" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586650660233" />
-    <state width="1879" height="185" key="GridCell.Tab.0.left" timestamp="1586650660233">
+    <state width="1879" height="166" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586652737380" />
+    <state width="1879" height="166" key="GridCell.Tab.0.left" timestamp="1586652737380">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1038" height="162" key="GridCell.Tab.0.left/0.0.1080.1880@0.0.1080.1880" timestamp="1586626311895" />
     <state width="1879" height="144" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1483.1072@0.0.1920.1040" timestamp="1585734288591" />
-    <state width="1879" height="185" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586650660233" />
-    <state width="1879" height="185" key="GridCell.Tab.0.right" timestamp="1586650660233">
+    <state width="1879" height="166" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586652737380" />
+    <state width="1879" height="166" key="GridCell.Tab.0.right" timestamp="1586652737380">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1038" height="162" key="GridCell.Tab.0.right/0.0.1080.1880@0.0.1080.1880" timestamp="1586626311896" />
     <state width="1879" height="144" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1483.1072@0.0.1920.1040" timestamp="1585734288591" />
-    <state width="1879" height="185" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586650660233" />
+    <state width="1879" height="166" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586652737380" />
     <state width="1879" height="185" key="GridCell.Tab.1.bottom" timestamp="1586650660233">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -186,10 +232,10 @@
     </state>
     <state width="1038" height="184" key="GridCell.Tab.1.right/0.0.1080.1880@0.0.1080.1880" timestamp="1586617711172" />
     <state width="1879" height="185" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586650660233" />
-    <state x="440" y="94" key="SettingsEditor" timestamp="1586649415607">
+    <state x="440" y="94" key="SettingsEditor" timestamp="1586651701670">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1586649415607" />
+    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1586651701670" />
     <state x="256" y="177" width="711" height="524" key="StructurePopup" timestamp="1586116610842">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

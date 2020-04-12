@@ -13,7 +13,7 @@ public class UI extends JFrame {
 
     //UI
     JFrame jFrame;
-    JLabel subTextLabel, subTextUnderLabel, fontSizeExplainLabel, infoLabel,frameLocationLabel;
+    JLabel subTextLabel, subTextUnderLabel, fontSizeExplainLabel, infoLabel, frameLocationLabel;
     JButton open, exit, fontSmaller, fontBigger, moveUp, moveDown;
 
     //Values
@@ -29,10 +29,12 @@ public class UI extends JFrame {
     //class
     SubThread subThread;
     Thread thread;
-
+    String help = "1. 글씨 크기와 자막 위치를 조절합니다. \n플레이 중에도 우클릭으로 메뉴를 열어 조절 할 수 있습니다." +
+            "\n2. 열기 버튼을 클릭 후, 자막 파일을 선택합니다. 현재 지원 자막:smi\n" +
+            "3. 즐겁게 감상합니다.\n\n\n버그 및 에러 제보: shinyu.choi@tum.de\nVersion 1.0\nCopyright (c) 2020, Choi shin-yu \n" +
+            "All rights reserved.";
 
     UI() {
-        jButtonList = new ArrayList<>();
         initValues();
         initFrame();
         initButtons();
@@ -63,6 +65,7 @@ public class UI extends JFrame {
     }
 
     void initValues() {
+        jButtonList = new ArrayList<>();
         fontSize = 50;
         fileSelected = false;
         playing = false;
@@ -72,7 +75,6 @@ public class UI extends JFrame {
         bigButtonSize = new Dimension(70, 50);
         smallButtonSize = new Dimension(50, 35);
         isTransparent = false;
-
     }
 
     void initFrame() {
@@ -128,15 +130,20 @@ public class UI extends JFrame {
             subTextUnderLabel.setFont(new Font(null, Font.BOLD, fontSize));
         });
 
-        moveUp = createButton(fontSmaller.getX() + fontSmaller.getWidth() + 20, 20, new Dimension(smallButtonSize.width,bigButtonSize.height), "" + (char) 9650, e -> {
-            jFrame.setLocation(jFrame.getX(),jFrame.getY()-10);
+        moveUp = createButton(fontSmaller.getX() + fontSmaller.getWidth() + 20, 20, new Dimension(smallButtonSize.width, bigButtonSize.height), "" + (char) 9650, e -> {
+            jFrame.setLocation(jFrame.getX(), jFrame.getY() - 10);
         });
 
-        moveDown = createButton(moveUp.getX() + bigButtonSize.width + smallButtonSize.width, 20, new Dimension(smallButtonSize.width,bigButtonSize.height), "" + (char) 9660, e -> {
-            jFrame.setLocation(jFrame.getX(),jFrame.getY()+10);
+        moveDown = createButton(moveUp.getX() + bigButtonSize.width + smallButtonSize.width, 20, new Dimension(smallButtonSize.width, bigButtonSize.height), "" + (char) 9660, e -> {
+            jFrame.setLocation(jFrame.getX(), jFrame.getY() + 10);
 
         });
+        createButton((int) (jFrame.getWidth() / 2) - 50, 20, new Dimension(200, bigButtonSize.height), "사용법/도움말", e -> JOptionPane.showMessageDialog(jFrame, help
+                , "사용법/도움말",
+                JOptionPane.INFORMATION_MESSAGE));
+
     }
+
 
     void removeButtons() {
         for (JButton jButton : jButtonList) {
@@ -152,7 +159,7 @@ public class UI extends JFrame {
         jFrame.setBackground(new Color(0, 0, 0, 1));
         fontSizeExplainLabel.setBackground(new Color(0, 0, 0, 0));
         fontSizeExplainLabel.setText("");
-        frameLocationLabel.setBackground(new Color(0,0,0,0));
+        frameLocationLabel.setBackground(new Color(0, 0, 0, 0));
         frameLocationLabel.setText("");
     }
 
@@ -160,7 +167,7 @@ public class UI extends JFrame {
         subTextLabel = createLabel(0, 0, frameWidth, (int) ((frameHeight * 0.20)) / 2, "test", Color.lightGray);
         subTextLabel.setLocation(0, jFrame.getHeight() - (subTextLabel.getHeight() * 2));
         subTextLabel.setFont(new Font(null, Font.BOLD, fontSize));
-        subTextLabel.setText("자막의 위치입니다.");
+        subTextLabel.setText("자막의 위치입니다. 우클릭: 메뉴열기");
 
         subTextUnderLabel = createLabel(0, subTextLabel.getHeight(), frameWidth, (int) ((frameHeight * 0.20)) / 2, "test", Color.lightGray);
         subTextUnderLabel.setLocation(0, jFrame.getHeight() - subTextLabel.getHeight());
@@ -250,6 +257,7 @@ public class UI extends JFrame {
                 timeStamp.add(timeStamp.get(timeStamp.size() - 1) + 2000);*/
             }
         }
+
     }
 
 

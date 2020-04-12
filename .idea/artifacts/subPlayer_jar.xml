@@ -1,8 +1,8 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="subPlayer2:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/subPlayer2_jar</output-path>
-    <root id="archive" name="subPlayer2.jar">
-      <element id="module-output" name="subPlayer2" />
+  <artifact type="jar" name="subPlayer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/subPlayer_jar</output-path>
+    <root id="archive" name="subPlayer.jar">
+      <element id="module-output" name="subPlayer" />
       <element id="extracted-dir" path="$PROJECT_DIR$/multiline.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/juniversalchardet-2.3.1.jar" path-in-jar="/" />
     </root>
