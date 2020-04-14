@@ -11,16 +11,19 @@ import java.util.ArrayList;
 
 public class UI extends JFrame {
 
+    final String version = "version 1.0";
+
     //UI
     JFrame jFrame;
     JLabel subTextLabel, subTextUnderLabel, fontSizeExplainLabel, infoLabel, frameLocationLabel;
     JButton open, exit, fontSmaller, fontBigger, moveUp, moveDown, helpButton;
     JCheckBox easyStartCheckBox;
 
+
     //Values
     private boolean playing, fileSelected;
     int fontSize, frameHeight, frameWidth;
-    boolean isTransparent, easyStart;
+    boolean isTransparent;
 
     ArrayList<JButton> jButtonList;
 
@@ -34,12 +37,6 @@ public class UI extends JFrame {
     //class
     SubThread subThread;
     Thread thread;
-    String help = "1. 글씨 크기와 자막 위치를 조절합니다. \n" +
-            "플레이 중에도 우클릭으로 메뉴를 열어 조절 가능\n" +
-            "2. 열기 버튼을 클릭 후, 자막 파일을 선택합니다\n" +
-            "      ### Easy Start 체크시###\n      2-1. 시작 하고자 하는 자막을 < 와 > 버튼으로 선택합니다. \n      2-2.자막이 나오는 시간에 맞춰 GO를 클릭합니다.\n" +
-            "3. 즐겁게 감상합니다.\n\n\n" +
-            "버그 및 에러 제보: shinyu.choi@tum.de\nVersion 1.0\nCopyright (c) 2020, Choi shin-yu \nAll rights reserved. ";
 
     UI() {
         initValues();
@@ -145,10 +142,8 @@ public class UI extends JFrame {
             jFrame.setLocation(jFrame.getX(), jFrame.getY() + 10);
 
         });
-        helpButton = createButton((jFrame.getWidth() / 2) - 50, 20, new Dimension(200, bigButtonSize.height), "사용법/도움말", e -> JOptionPane.showMessageDialog(null, help
-                , "사용법/도움말",
-                JOptionPane.INFORMATION_MESSAGE));
-
+        //   helpButton = createButton((jFrame.getWidth() / 2) - 50, 20, new Dimension(200, bigButtonSize.height), "사용법/도움말", e -> JOptionPane.showMessageDialog(null, help, "사용법/도움말", JOptionPane.INFORMATION_MESSAGE));
+        helpButton = createButton((jFrame.getWidth() / 2) - 50, 20, new Dimension(200, bigButtonSize.height), "사용법/도움말", e -> displayGUI());
         easyStartCheckBox = new JCheckBox("Easy Start");
         easyStartCheckBox.setSelected(true);
         easyStartCheckBox.setSize(100, 50);
@@ -278,4 +273,13 @@ public class UI extends JFrame {
         subTextUnderLabel.setText(down);
         jFrame.repaint();
     }
+
+    private void displayGUI() {
+        JOptionPane.showMessageDialog(null,
+                new HelpPanel(version),
+                "사용법, 도움말",
+                JOptionPane.PLAIN_MESSAGE);
+    }
+
+
 }

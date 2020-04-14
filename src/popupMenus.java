@@ -83,10 +83,10 @@ public class popupMenus extends JPopupMenu {
 
 
         add(addMenu("사용법/도움말", e -> {
-            JOptionPane.showMessageDialog(ui.jFrame, ui.help
+            JOptionPane.showMessageDialog(null, new HelpPanel(ui.version)
                     ,
                     "사용법/도움말",
-                    JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.PLAIN_MESSAGE);
 
         }));
         add(addMenu("종료", e -> System.exit(0)));
