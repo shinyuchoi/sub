@@ -18,7 +18,9 @@
 
 2. 감상
 
+# Required Java version to run - 8.0
 
+[다운받기](https://www.java.com/de/download/)
 
 # 사용된 외부 라이브러리
 
