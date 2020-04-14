@@ -26,8 +26,6 @@ public class popupMenus extends JPopupMenu {
     popupMenus(UI ui) {
         this.ui = ui;
 
-
-
         add(addMenu("초기화", evt -> {
             try {
                 ProcessBuilder pb = new ProcessBuilder(System.getProperty("java.home") + "/bin/java", "-jar", new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getAbsolutePath());
@@ -40,8 +38,10 @@ public class popupMenus extends JPopupMenu {
         addSeparator();
         addSeparator();
         add(addMenu("일시정지/시간조절", new TimeControllerJOptional(ui)));
+
         addSeparator();
         addSeparator();
+        add(addMenu("자막 선택하기", new SubSelect(ui)));
 
 
         add(addMenu("싱크표시/해제", evt -> {
@@ -58,7 +58,6 @@ public class popupMenus extends JPopupMenu {
                 ui.fontSizeExplainLabel.setText("글씨 크기");
                 ui.frameLocationLabel.setBackground(Color.gray);
                 ui.frameLocationLabel.setText("위치 조절");
-
                 ui.jPopupMenu.setVisible(false);
                 ui.jFrame.repaint();
                 ui.isTransparent = false;
@@ -78,7 +77,7 @@ public class popupMenus extends JPopupMenu {
         add(addSyncControlMenu());
 
         add(addMoveFrame());
-
+        add(addFontsize());
         addSeparator();
         addSeparator();
 
@@ -95,24 +94,53 @@ public class popupMenus extends JPopupMenu {
     }
 
 
-    JMenu addSyncControlMenu() {
-        JMenu jMenu = new JMenu("싱크조절");
+    JMenu addFontsize() {
+        JMenu jMenu = new JMenu("폰트크기");
         jMenu.setHorizontalAlignment(SwingConstants.CENTER);
-        addSubMenu(jMenu, "-5초", e -> {
+
+        addSubMenu(jMenu, "--", e -> {
+            ui.fontSize -= 2;
+            ui.subTextLabel.setFont(new Font(null, Font.BOLD, ui.fontSize));
+            ui.subTextUnderLabel.setFont(new Font(null, Font.BOLD, ui.fontSize));
+        });
+
+
+        addSubMenu(jMenu, "크기리셋", e -> {
+            ui.fontSize = 50;
+            ui.subTextLabel.setFont(new Font(null, Font.BOLD, ui.fontSize));
+            ui.subTextUnderLabel.setFont(new Font(null, Font.BOLD, ui.fontSize));
+        });
+
+
+        addSubMenu(jMenu, "++", e -> {
+            ui.fontSize += 2;
+            ui.subTextLabel.setFont(new Font(null, Font.BOLD, ui.fontSize));
+            ui.subTextUnderLabel.setFont(new Font(null, Font.BOLD, ui.fontSize));
+        });
+        return jMenu;
+    }
+
+
+    JMenu addSyncControlMenu() {
+        JMenu jMenu = new JMenu("플레이타임 조절");
+        jMenu.setHorizontalAlignment(SwingConstants.CENTER);
+        addSubMenu(jMenu, "<<5초", e -> {
             ui.subThread.syncConrol(-5);
 
         });
 
 
-        addSubMenu(jMenu, "-1초", e -> {
+        addSubMenu(jMenu, "<<1초", e -> {
             ui.subThread.syncConrol(-1);
         });
 
-        addSubMenu(jMenu, "-0.5초", e -> {
+
+        addSubMenu(jMenu, "<<0.5초", e -> {
             ui.subThread.syncConrol(-0.5);
         });
 
-        addSubMenu(jMenu, "싱크리셋", e -> {
+
+        addSubMenu(jMenu, "리셋", e -> {
             if (ui.isPlaying()) {
                 ui.subThread.timeControl = 0;
                 ui.subThread.arrangeIndex();
@@ -121,16 +149,19 @@ public class popupMenus extends JPopupMenu {
             }
         });
 
-        addSubMenu(jMenu, "+0.5초", e -> {
+
+        addSubMenu(jMenu, "0.5초>>", e -> {
             ui.subThread.syncConrol(0.5);
 
         });
-        addSubMenu(jMenu, "+1초", e -> {
+
+
+        addSubMenu(jMenu, "1초>>", e -> {
             ui.subThread.syncConrol(1);
 
         });
 
-        addSubMenu(jMenu, "+5초", e -> {
+        addSubMenu(jMenu, "5초>>", e -> {
             ui.subThread.syncConrol(5);
 
         });

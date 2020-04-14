@@ -14,6 +14,7 @@ public class TimeControllerJOptional implements ActionListener {
 
     public TimeControllerJOptional(UI ui) {
         this.ui = ui;
+
     }
 
 
@@ -21,6 +22,7 @@ public class TimeControllerJOptional implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (ui.isPlaying()) {
+
             pauseStart = System.currentTimeMillis();
 
             currentPlayTimeLabel = new JLabel();

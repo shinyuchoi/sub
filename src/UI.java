@@ -14,25 +14,32 @@ public class UI extends JFrame {
     //UI
     JFrame jFrame;
     JLabel subTextLabel, subTextUnderLabel, fontSizeExplainLabel, infoLabel, frameLocationLabel;
-    JButton open, exit, fontSmaller, fontBigger, moveUp, moveDown;
+    JButton open, exit, fontSmaller, fontBigger, moveUp, moveDown, helpButton;
+    JCheckBox easyStartCheckBox;
 
     //Values
     private boolean playing, fileSelected;
     int fontSize, frameHeight, frameWidth;
-    boolean isTransparent;
+    boolean isTransparent, easyStart;
 
     ArrayList<JButton> jButtonList;
 
+    /**
+     * bigButtonSize :  (70, 50)
+     * smallButtonSize : (50, 35);
+     */
     Dimension bigButtonSize, smallButtonSize, screenSize;
     JPopupMenu jPopupMenu;
 
     //class
     SubThread subThread;
     Thread thread;
-    String help = "1. 글씨 크기와 자막 위치를 조절합니다. \n플레이 중에도 우클릭으로 메뉴를 열어 조절 할 수 있습니다." +
-            "\n2. 열기 버튼을 클릭 후, 자막 파일을 선택합니다. 현재 지원 자막:smi\n" +
-            "3. 즐겁게 감상합니다.\n\n\n버그 및 에러 제보: shinyu.choi@tum.de\nVersion 1.0\nCopyright (c) 2020, Choi shin-yu \n" +
-            "All rights reserved. ";
+    String help = "1. 글씨 크기와 자막 위치를 조절합니다. \n" +
+            "플레이 중에도 우클릭으로 메뉴를 열어 조절 가능\n" +
+            "2. 열기 버튼을 클릭 후, 자막 파일을 선택합니다\n" +
+            "      ### Easy Start 체크시###\n      2-1. 시작 하고자 하는 자막을 < 와 > 버튼으로 선택합니다. \n      2-2.자막이 나오는 시간에 맞춰 GO를 클릭합니다.\n" +
+            "3. 즐겁게 감상합니다.\n\n\n" +
+            "버그 및 에러 제보: shinyu.choi@tum.de\nVersion 1.0\nCopyright (c) 2020, Choi shin-yu \nAll rights reserved. ";
 
     UI() {
         initValues();
@@ -138,9 +145,15 @@ public class UI extends JFrame {
             jFrame.setLocation(jFrame.getX(), jFrame.getY() + 10);
 
         });
-        createButton((int) (jFrame.getWidth() / 2) - 50, 20, new Dimension(200, bigButtonSize.height), "사용법/도움말", e -> JOptionPane.showMessageDialog(jFrame, help
+        helpButton = createButton((jFrame.getWidth() / 2) - 50, 20, new Dimension(200, bigButtonSize.height), "사용법/도움말", e -> JOptionPane.showMessageDialog(null, help
                 , "사용법/도움말",
                 JOptionPane.INFORMATION_MESSAGE));
+
+        easyStartCheckBox = new JCheckBox("Easy Start");
+        easyStartCheckBox.setSelected(true);
+        easyStartCheckBox.setSize(100, 50);
+        easyStartCheckBox.setLocation(helpButton.getX() + helpButton.getWidth() + 50, 20);
+        jFrame.add(easyStartCheckBox);
 
     }
 
@@ -149,6 +162,7 @@ public class UI extends JFrame {
         for (JButton jButton : jButtonList) {
             jFrame.remove(jButton);
         }
+        jFrame.remove(easyStartCheckBox);
     }
 
     void removeLabels() {
@@ -239,22 +253,12 @@ public class UI extends JFrame {
             jfc.setFileFilter(smi);
 
             int result = jfc.showOpenDialog(window);
-            //if (result == jfc.APPROVE_OPTION) {
+
             if (result == JFileChooser.APPROVE_OPTION) {
                 File selectedFile = jfc.getSelectedFile();
                 subThread.setFilePath(selectedFile.toString());
                 fileSelected = true;
-                /*try {
-                    fileIO.sim2Array(filePath);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-                sub = fileIO.getSub();
-                subUnder = fileIO.getSubUnder();
-                timeStamp = fileIO.getTimeStamp();
-                sub.add("종료되었습니다.");
-                subUnder.add("사용해주셔서 감사합니다.");
-                timeStamp.add(timeStamp.get(timeStamp.size() - 1) + 2000);*/
+                //System.out.println(selectedFile.toString());
             }
         }
 
@@ -272,5 +276,6 @@ public class UI extends JFrame {
     void setTextLabels(String up, String down) {
         subTextLabel.setText(up);
         subTextUnderLabel.setText(down);
+        jFrame.repaint();
     }
 }
