@@ -16,9 +16,24 @@
 
 2. 감상
 
+<With "Easy Start">-Default
+
+1. Adjust font size(red) and location(green) of text(purple) and click <열기>(blue) to open smi, srt file.
+
+2. Select starting subtitle with <이전(previous) 다음>(next).
+
+3. Click go to start. 
+
+<Without "Easy Start">
+
+1. Adjust font size(red) and location(green) of text(purple) and click <열기>(blue) to open smi, srt file.
+
+2. Enjoy
+
+
 # 실행에 필요한 자바 버전(Required Java Version) - 8.0
 
-[다운받기](https://www.java.com/de/download/)
+[다운받기(Download)](https://www.java.com/de/download/)
 
 # 사용된 외부 라이브러리(External library)
 
