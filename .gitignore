@@ -2,3 +2,4 @@
 *.srt
 
 out/
+.idea/
