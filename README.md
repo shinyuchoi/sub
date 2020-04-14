@@ -1,8 +1,6 @@
-# 실행시 화면 
+# How to use - 사용법
 
 ![Introduction](https://github.com/shinyuchoi/sub/blob/master/Introduction.png)
-
-# 사용법
 
 <"Easy Start"를 체크한 경우>-기본
 
@@ -18,11 +16,11 @@
 
 2. 감상
 
-# Required Java version to run - 8.0
+# 실행에 필요한 자바 버전- 8.0
 
 [다운받기](https://www.java.com/de/download/)
 
-# 사용된 외부 라이브러리
+# 사용된 외부 라이브러리(External library)
 
 [juniversalchardet-2.3.1.jar](https://github.com/albfernandez/juniversalchardet)
 
