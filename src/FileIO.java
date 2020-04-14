@@ -25,20 +25,20 @@ public class FileIO {
 
         String line;
         String result = "";
-        int fontPosition;
         while ((line = bufferedReader.readLine()) != null) {
 
             line.replaceAll("(\r\n|\r|\n|\n\r)", " ");
 
 
-            if (line.toUpperCase().contains("<FONT")) {
+            if (line.toUpperCase().contains("<FONT"))
                 line = line.replace(line.substring(line.toUpperCase().indexOf("<FONT"), line.indexOf('>', line.toUpperCase().indexOf("<FONT")) + 1), "");
+            if (line.toUpperCase().contains("</FONT"))
                 line = line.replace(line.substring(line.toUpperCase().indexOf("</FONT"), line.indexOf('>', line.toUpperCase().indexOf("</FONT")) + 1), "");
-            }
-            if (line.toUpperCase().contains("<I")) {
-                line = line.replace(line.substring(line.toUpperCase().indexOf("<I"), line.indexOf('>', line.toUpperCase().indexOf("<I")) + 1), "");
+            if (line.toUpperCase().contains("<I"))
                 line = line.replace(line.substring(line.toUpperCase().indexOf("</I"), line.indexOf('>', line.toUpperCase().indexOf("</I")) + 1), "");
-            }
+            if (line.toUpperCase().contains("</I"))
+                line = line.replace(line.substring(line.toUpperCase().indexOf("<I"), line.indexOf('>', line.toUpperCase().indexOf("<I")) + 1), "");
+
 
             result += line.replace("&nbsp;", " ");
         }

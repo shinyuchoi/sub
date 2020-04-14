@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class SubThread implements Runnable {
 
@@ -67,22 +68,13 @@ public class SubThread implements Runnable {
         }
 
 
-       /* ui.setTextLabels(filePath, "파일을 성공적으로 읽었습니다.");
-
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-*/
-
         ui.setTextLabels("", "");
-        int counter = 0;
+        AtomicInteger counter = new AtomicInteger(0);
         ui.isTransparent = true;
         ui.removeButtons();
         ui.removeLabels();
         if (ui.easyStartCheckBox.isSelected()) {
+
             AtomicBoolean next = new AtomicBoolean(false);
             long pauseStart = System.currentTimeMillis();
 
@@ -107,9 +99,20 @@ public class SubThread implements Runnable {
                 next.set(true);
             });
 
+            while (counter.incrementAndGet() < 400) {
+                try {
+                    Thread.sleep(5);
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                ui.setTextLabels(filePath, "파일을 성공적으로 읽었습니다.");
+
+            }
+
             while (!next.get()) {
                 try {
-                    Thread.sleep(1);
+                    Thread.sleep(5);
                     ui.setTextLabels(sub.get(subIndex), subUnder.get(subIndex));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -120,7 +123,7 @@ public class SubThread implements Runnable {
             // before first sub
             while (true) {
                 try {
-                    Thread.sleep(1);
+                    Thread.sleep(5);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -129,14 +132,10 @@ public class SubThread implements Runnable {
                     setPlayingtime(System.currentTimeMillis());
                     if (getPlayingTime() < timeStamp.get(subIndex)) {
                         ui.infoLabel.setText("첫자막까지>" + labelTimer(timeStamp.get(0) - getPlayingTime()));
-                        if (getPlayingTime() % 1000 == 0)
-                            System.out.println(getPlayingTime());
-                        if (counter < 1000) {
+                        if (counter.incrementAndGet() < 200) {
                             ui.setTextLabels(filePath, "파일을 성공적으로 읽었습니다.");
-                            counter++;
                         } else {
                             ui.setTextLabels(" ", " ");
-                            //ui.jFrame.repaint();
                         }
 
                     } else {
@@ -148,9 +147,10 @@ public class SubThread implements Runnable {
         }
         ui.removeButtons();
         ui.infoLabel.setText("");
+        counter.set(0);
         while (true) {
             try {
-                Thread.sleep(1);
+                Thread.sleep(10);
             } catch (InterruptedException e) {
                 return;
 
@@ -183,10 +183,9 @@ public class SubThread implements Runnable {
                 }
                 if (indicatorInfolabel) {
                     ui.infoLabel.setText("싱크: " + (timeControl / 1000) + "초");
-                    counter++;
-                    if (counter == 3000) {
+                    if (counter.incrementAndGet() == 600) {
                         indicatorInfolabel = false;
-                        counter = 0;
+                        counter.set(0);
                     }
 
                 } else {
