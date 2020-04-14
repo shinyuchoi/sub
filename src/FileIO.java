@@ -34,9 +34,9 @@ public class FileIO {
                 line = line.replace(line.substring(line.toUpperCase().indexOf("<FONT"), line.indexOf('>', line.toUpperCase().indexOf("<FONT")) + 1), "");
             if (line.toUpperCase().contains("</FONT"))
                 line = line.replace(line.substring(line.toUpperCase().indexOf("</FONT"), line.indexOf('>', line.toUpperCase().indexOf("</FONT")) + 1), "");
-            if (line.toUpperCase().contains("<I"))
-                line = line.replace(line.substring(line.toUpperCase().indexOf("</I"), line.indexOf('>', line.toUpperCase().indexOf("</I")) + 1), "");
             if (line.toUpperCase().contains("</I"))
+                line = line.replace(line.substring(line.toUpperCase().indexOf("</I"), line.indexOf('>', line.toUpperCase().indexOf("</I")) + 1), "");
+            if (line.toUpperCase().contains("<I"))
                 line = line.replace(line.substring(line.toUpperCase().indexOf("<I"), line.indexOf('>', line.toUpperCase().indexOf("<I")) + 1), "");
 
 
