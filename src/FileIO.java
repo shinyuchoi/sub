@@ -1,20 +1,22 @@
 import org.mozilla.universalchardet.UniversalDetector;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class FileIO {
 
-
     private ArrayList<String> sub;
     private ArrayList<String> subUnder;
     private ArrayList<Integer> timeStamp;
 
-    String fileToOneLine(String filePath) throws Exception {
+    /**
+     * Make all sub text in one line
+     * @param filePath : filePath
+     * @return : String s. All subText in one line
+     * @throws IOException IO Exception
+     */
+    String fileToOneLine(String filePath) throws IOException {
 
         //file path
         File file = new File(filePath);
@@ -29,7 +31,7 @@ public class FileIO {
 
             line.replaceAll("(\r\n|\r|\n|\n\r)", " ");
 
-
+            //Remove Unnecessary Tags
             if (line.toUpperCase().contains("<FONT"))
                 line = line.replace(line.substring(line.toUpperCase().indexOf("<FONT"), line.indexOf('>', line.toUpperCase().indexOf("<FONT")) + 1), "");
             if (line.toUpperCase().contains("</FONT"))
@@ -46,7 +48,13 @@ public class FileIO {
         return result;
     }
 
-    void sim2Array(String path_win) throws Exception {
+
+    /**
+     * Convert *.smi to Arrays to be used by SubThread.java
+     * @param path_win filePath
+     * @throws IOException Exception
+     */
+    void sim2Array(String path_win) throws IOException {
         sub = new ArrayList<>();
         timeStamp = new ArrayList<>();
         subUnder = new ArrayList<>();
@@ -69,15 +77,14 @@ public class FileIO {
 
             }
         }
-        /* for (int i = 0; i < sub.size(); i++) {
-            System.out.println(sub.get(i));
-            System.out.println(subUnder.get(i));
-            System.out.println("-------------------------------------------------");
-        }*/
     }
 
-
-    void srt2Array(String path_win) throws Exception {
+    /**
+     * Read *.srt and convert it to Arrays to be used by SubThread.java
+     * @param path_win filepath
+     * @throws IOException IOException
+     */
+    void srt2Array(String path_win) throws IOException {
         sub = new ArrayList<>();
         subUnder = new ArrayList<>();
         timeStamp = new ArrayList<>();
@@ -120,6 +127,11 @@ public class FileIO {
     }
 
 
+    /**
+     * Convert String HH:MM:SS,mmm to millisecond (int) for timestamp
+     * @param s : String HH:MM:ss,mmm
+     * @return millisecond (int)
+     */
     int time2Long(String s) {
         int result = Integer.parseInt(s.substring(0, 2).trim());
         result *= 60;

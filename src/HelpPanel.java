@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+/**
+ * Build JPanel for Help/Instruction
+ */
 public class HelpPanel extends JPanel {
     HelpPanel(String version) {
 
@@ -23,12 +26,8 @@ public class HelpPanel extends JPanel {
                 "<h3>3. 즐겁게 감상합니다.</html>", SwingConstants.CENTER);
 
 
-        add(jLabel);
-
-
         JLabel contact = new JLabel("<html> <h4>버그 및 에러제보 : <a href=\"\">shinyu.choi@tum.de</a><h4></html>", SwingConstants.CENTER);
         contact.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        add(contact);
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -38,9 +37,10 @@ public class HelpPanel extends JPanel {
                 }
             }
         });
+
+
         JLabel website = new JLabel("<html> <h4>GitHub : <a href=\"\">https://github.com/shinyuchoi/sub</a></h4></html>", SwingConstants.CENTER);
         website.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        add(website);
         website.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -50,9 +50,16 @@ public class HelpPanel extends JPanel {
                 }
             }
         });
-        JLabel jLabel1 = new JLabel("<html><h5>" + version + "<br>Copyright (c) 2020, Choi shin-yu <br>All rights reserved.</h5></html", SwingConstants.CENTER);
-        add(jLabel1);
 
+
+        JLabel copyright = new JLabel("<html><h5>" + version + "<br>Copyright (c) 2020, Choi shin-yu <br>All rights reserved.</h5></html", SwingConstants.CENTER);
+
+
+
+        add(jLabel);
+        add(contact);
+        add(website);
+        add(copyright);
     }
 
 

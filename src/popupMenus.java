@@ -63,7 +63,7 @@ public class popupMenus extends JPopupMenu {
                 ui.isTransparent = false;
             } else {
                 ui.removeButtons();
-                ui.removeLabels();
+                ui.doTransparentLabels();
                 ui.jPopupMenu.setVisible(false);
                 ui.jFrame.repaint();
                 ui.isTransparent = true;

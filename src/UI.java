@@ -27,10 +27,6 @@ public class UI extends JFrame {
 
     ArrayList<JButton> jButtonList;
 
-    /**
-     * bigButtonSize :  (70, 50)
-     * smallButtonSize : (50, 35);
-     */
     Dimension bigButtonSize, smallButtonSize, screenSize;
     JPopupMenu jPopupMenu;
 
@@ -48,26 +44,10 @@ public class UI extends JFrame {
 
     }
 
-    void initClasses() {
-        jPopupMenu = new popupMenus(this);
-        subThread = new SubThread(this);
-        thread = new Thread(subThread);
-
-    }
-
-    void start() {
-        while (!fileSelected) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-        playing = true;
-        thread.start();
-    }
-
+    /**
+     * bigButtonSize :  (70, 50)
+     * smallButtonSize : (50, 35);
+     */
     void initValues() {
         jButtonList = new ArrayList<>();
         fontSize = 50;
@@ -103,19 +83,7 @@ public class UI extends JFrame {
         });
     }
 
-    void restart(int sec) throws IOException, URISyntaxException, InterruptedException {
-        for (int j = 0; j < sec; j++) {
-            subTextUnderLabel.setText("프로그램을 " + (sec - j) + "초후 재실행합니다.");
-            Thread.sleep(1000);
-        }
-        ProcessBuilder pb = new ProcessBuilder(System.getProperty("java.home") + "/bin/java", "-jar", new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getAbsolutePath());
-        pb.start();
-        System.exit(0);
-    }
-
-
     void initButtons() {
-        //create buttons
         open = createButton(50, 20, bigButtonSize, "열기", new OpenFile());
         exit = createButton(jFrame.getWidth() - 70, 0, smallButtonSize, "X", null);
         exit.addActionListener(e -> System.exit(0));
@@ -142,34 +110,17 @@ public class UI extends JFrame {
             jFrame.setLocation(jFrame.getX(), jFrame.getY() + 10);
 
         });
-        //   helpButton = createButton((jFrame.getWidth() / 2) - 50, 20, new Dimension(200, bigButtonSize.height), "사용법/도움말", e -> JOptionPane.showMessageDialog(null, help, "사용법/도움말", JOptionPane.INFORMATION_MESSAGE));
-        helpButton = createButton((jFrame.getWidth() / 2) - 50, 20, new Dimension(200, bigButtonSize.height), "사용법/도움말", e -> displayGUI());
+        helpButton = createButton((jFrame.getWidth() / 2) - 50, 20, new Dimension(200, bigButtonSize.height), "사용법/도움말", e -> JOptionPane.showMessageDialog(null,
+                new HelpPanel(version),
+                "사용법, 도움말",
+                JOptionPane.PLAIN_MESSAGE));
+
         easyStartCheckBox = new JCheckBox("Easy Start");
         easyStartCheckBox.setSelected(true);
         easyStartCheckBox.setSize(100, 50);
         easyStartCheckBox.setLocation(helpButton.getX() + helpButton.getWidth() + 50, 20);
         jFrame.add(easyStartCheckBox);
 
-    }
-
-
-    void removeButtons() {
-        for (JButton jButton : jButtonList) {
-            jFrame.remove(jButton);
-        }
-        jFrame.remove(easyStartCheckBox);
-    }
-
-    void removeLabels() {
-
-        infoLabel.setText("");
-        subTextLabel.setBackground(new Color(0, 0, 0, 0));
-        subTextUnderLabel.setBackground(new Color(0, 0, 0, 0));
-        jFrame.setBackground(new Color(0, 0, 0, 1));
-        fontSizeExplainLabel.setBackground(new Color(0, 0, 0, 0));
-        fontSizeExplainLabel.setText("");
-        frameLocationLabel.setBackground(new Color(0, 0, 0, 0));
-        frameLocationLabel.setText("");
     }
 
     void initLabels() {
@@ -187,54 +138,92 @@ public class UI extends JFrame {
         fontSizeExplainLabel = createLabel(fontBigger.getX() + smallButtonSize.width, 20, bigButtonSize.width, smallButtonSize.height, "글씨 크기", Color.LIGHT_GRAY);
         frameLocationLabel = createLabel(moveUp.getX() + smallButtonSize.width, 20, bigButtonSize.width, smallButtonSize.height, "위치 조절", Color.LIGHT_GRAY);
         infoLabel = createLabel(jFrame.getWidth() - 150, 35, 150, 40, "", new Color(0, 0, 0, 0));
-        setInfoLabel("싱크표시창");
+        setInfoLabelText("싱크표시창");
+    }
+
+    void initClasses() {
+        jPopupMenu = new popupMenus(this);
+        subThread = new SubThread(this);
+        thread = new Thread(subThread);
+
+    }
+    
+    void start() {
+        while (!fileSelected) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        playing = true;
+        thread.start();
     }
 
 
-    void setInfoLabel(String s) {
+    /**
+     * Restart application
+     * @param sec : Sec to restart
+     * @throws IOException  : if problem occurs by reading file
+     * @throws URISyntaxException  : problem with ProcessBuilder
+     * @throws InterruptedException : problem with thread
+     */
+    void restart(int sec) throws IOException, URISyntaxException, InterruptedException {
+        for (int j = 0; j < sec; j++) {
+            subTextUnderLabel.setText("프로그램을 " + (sec - j) + "초후 재실행합니다.");
+            Thread.sleep(1000);
+        }
+        ProcessBuilder pb = new ProcessBuilder(System.getProperty("java.home") + "/bin/java", "-jar", new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getAbsolutePath());
+        pb.start();
+        System.exit(0);
+    }
+
+    void removeButtons() {
+        for (JButton jButton : jButtonList) {
+            jFrame.remove(jButton);
+        }
+        jFrame.remove(easyStartCheckBox);
+    }
+
+    void doTransparentLabels() {
+
+        infoLabel.setText("");
+        subTextLabel.setBackground(new Color(0, 0, 0, 0));
+        subTextUnderLabel.setBackground(new Color(0, 0, 0, 0));
+        jFrame.setBackground(new Color(0, 0, 0, 1));
+        fontSizeExplainLabel.setBackground(new Color(0, 0, 0, 0));
+        fontSizeExplainLabel.setText("");
+        frameLocationLabel.setBackground(new Color(0, 0, 0, 0));
+        frameLocationLabel.setText("");
+    }
+
+    public boolean isPlaying() {
+        return playing;
+    }
+
+    public void setPlaying(boolean playing) {
+        this.playing = playing;
+    }
+
+    /**
+     * setText for both subLabels
+     * @param up : Text for upper Label
+     * @param down : Text for under Label
+     */
+    void setTextLabels(String up, String down) {
+        subTextLabel.setText(up);
+        subTextUnderLabel.setText(down);
+        jFrame.repaint();
+    }
+
+    /**
+     * SetText Infolabel
+     * @param s String Text
+     */
+    void setInfoLabelText(String s) {
         infoLabel.setText(s);
     }
-
-    /**
-     * @param x              : x좌표
-     * @param y              : y좌표
-     * @param d              : Dimension
-     * @param text           : 버튼 출력 내용
-     * @param actionListener : 리스너
-     * @return new JButton
-     */
-    JButton createButton(int x, int y, Dimension d, String text, ActionListener actionListener) {
-        JButton jButton = new JButton(text);
-        jFrame.add(jButton);
-        jButton.setSize(d);
-        jButton.setLocation(x, y);
-        jButton.addActionListener(actionListener);
-        jButtonList.add(jButton);
-        return jButton;
-    }
-
-    /**
-     * @param x:x좌표
-     * @param y:y좌표
-     * @param width:가로
-     * @param height:높이
-     * @param text:텍스트
-     * @param c:Color
-     * @return JLabel
-     */
-    JLabel createLabel(int x, int y, int width, int height, String text, Color c) {
-        JLabel jLabel = new JLabel(text, SwingConstants.CENTER);
-        jFrame.add(jLabel);
-        jLabel.setSize(width, height);
-        jLabel.setLocation(x, y);
-        jLabel.setOpaque(true);
-        jLabel.setBackground(c);
-        jLabel.setText(text);
-        jLabel.setForeground(Color.white);
-        jLabel.setUI(MultiLineShadowUI.labelUI);
-        return jLabel;
-    }
-
 
     class OpenFile implements ActionListener {
         @Override
@@ -260,26 +249,43 @@ public class UI extends JFrame {
     }
 
 
-    public boolean isPlaying() {
-        return playing;
+    /**
+     * @param x              : x-coordinate
+     * @param y              : y-coordinate
+     * @param d              : Dimension
+     * @param text           : text on button
+     * @param actionListener : listener
+     * @return new JButton
+     */
+    JButton createButton(int x, int y, Dimension d, String text, ActionListener actionListener) {
+        JButton jButton = new JButton(text);
+        jFrame.add(jButton);
+        jButton.setSize(d);
+        jButton.setLocation(x, y);
+        jButton.addActionListener(actionListener);
+        jButtonList.add(jButton);
+        return jButton;
     }
 
-    public void setPlaying(boolean playing) {
-        this.playing = playing;
+    /**
+     * @param x:x-coordinate
+     * @param y:y-coordinate
+     * @param width:             size-Width
+     * @param height:size-height
+     * @param text:Text          on label
+     * @param c:Color
+     * @return JLabel
+     */
+    JLabel createLabel(int x, int y, int width, int height, String text, Color c) {
+        JLabel jLabel = new JLabel(text, SwingConstants.CENTER);
+        jFrame.add(jLabel);
+        jLabel.setSize(width, height);
+        jLabel.setLocation(x, y);
+        jLabel.setOpaque(true);
+        jLabel.setBackground(c);
+        jLabel.setText(text);
+        jLabel.setForeground(Color.white);
+        jLabel.setUI(MultiLineShadowUI.labelUI);
+        return jLabel;
     }
-
-    void setTextLabels(String up, String down) {
-        subTextLabel.setText(up);
-        subTextUnderLabel.setText(down);
-        jFrame.repaint();
-    }
-
-    private void displayGUI() {
-        JOptionPane.showMessageDialog(null,
-                new HelpPanel(version),
-                "사용법, 도움말",
-                JOptionPane.PLAIN_MESSAGE);
-    }
-
-
 }

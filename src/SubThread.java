@@ -8,36 +8,36 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class SubThread implements Runnable {
 
     UI ui;
-    long startTime;
+    FileIO fileIO;
+    String filePath;
+
+    //from TimeControllerJoptional
     long timeControl;
+
+    //sum of Pause
     long pauseTime;
+
     ArrayList<String> sub, subUnder;
     ArrayList<Integer> timeStamp;
 
-    long playingTime;
+
+    long startTime, playingTime;
+    AtomicBoolean next;
     int subIndex;
+
+    //turn on/off Infolabel
+    //turn on/off menu
     boolean indicatorInfolabel, subRunning;
+
 
     SubThread(UI ui) {
         this.ui = ui;
     }
 
-    FileIO fileIO;
-
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
-    }
-
-    String filePath;
-
-
-    String labelTimer(long n) {
-        n /= 1000;
-        return String.format("%02d:%02d:%02d", n / 3600, (n % 3600) / 60, (n % 3600) % 60);
-    }
 
     @Override
     public void run() {
+        //Init Values
         subRunning = false;
         fileIO = new FileIO();
         try {
@@ -59,6 +59,8 @@ public class SubThread implements Runnable {
         startTime = System.currentTimeMillis();
         subIndex = 0;
 
+
+        //error -> restart 3
         if (timeStamp.size() == 0) {
             try {
                 ui.subTextLabel.setText("파일을 읽지 못했습니다. ");
@@ -68,41 +70,23 @@ public class SubThread implements Runnable {
             }
         }
 
-
+        //init Labels
         ui.setTextLabels("", "");
         AtomicInteger counter = new AtomicInteger(0);
         ui.isTransparent = true;
         ui.removeButtons();
-        ui.removeLabels();
+        ui.doTransparentLabels();
+
+
+        //With EasyStart
         if (ui.easyStartCheckBox.isSelected()) {
-
-            AtomicBoolean next = new AtomicBoolean(false);
             long pauseStart = System.currentTimeMillis();
+            createButtonsForEasyStart();
 
-            ui.createButton(ui.exit.getX() - 90, ui.exit.getY() + ui.smallButtonSize.height, new Dimension(70, 35), "<이전", e -> {
-                if (subIndex > 0) {
-                    if (subIndex > 1 && (sub.get(subIndex - 1).equals(" ") && subUnder.get(subIndex - 1).equals(" ")))
-                        subIndex -= 2;
-                    else
-                        subIndex--;
-                }
-            });
-            ui.createButton(ui.exit.getX() - 20, ui.exit.getY() + ui.smallButtonSize.height, new Dimension(70, 35), "다음>", e -> {
-                if (subIndex < sub.size()) {
-                    if (subIndex < sub.size() - 1 && (sub.get(subIndex + 1).equals(" ") && subUnder.get(subIndex + 1).equals(" ")))
-                        subIndex += 2;
-                    else
-                        subIndex++;
-                }
-            });
 
-            ui.createButton(ui.exit.getX(), ui.exit.getY(), ui.smallButtonSize, "Go", e -> {
-                next.set(true);
-            });
-
-            while (counter.incrementAndGet() < 400) {
+            while (counter.incrementAndGet() < 200) {
                 try {
-                    Thread.sleep(5);
+                    Thread.sleep(10);
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -113,7 +97,7 @@ public class SubThread implements Runnable {
 
             while (!next.get()) {
                 try {
-                    Thread.sleep(5);
+                    Thread.sleep(10);
                     ui.setTextLabels(sub.get(subIndex), subUnder.get(subIndex));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -121,10 +105,10 @@ public class SubThread implements Runnable {
             }
             addPauseTime(System.currentTimeMillis() - pauseStart - timeStamp.get(subIndex));
         } else {
-            // before first sub
+            //without Easystart
             while (true) {
                 try {
-                    Thread.sleep(5);
+                    Thread.sleep(10);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -150,6 +134,8 @@ public class SubThread implements Runnable {
         ui.infoLabel.setText("");
         counter.set(0);
         subRunning = true;
+
+        //Compare Timestamp and playtime -> Set subText to display
         while (true) {
             try {
                 Thread.sleep(10);
@@ -163,8 +149,10 @@ public class SubThread implements Runnable {
 
                 if (timeStamp.get(subIndex) < getPlayingTime()) {
 
-                    //System.out.println("over>>"+sub.get(subIndex));
-                    //System.out.println("under>>"+subUnder.get(subIndex));
+                    /* for test
+                    System.out.println("over>>"+sub.get(subIndex));
+                    System.out.println("under>>"+subUnder.get(subIndex));
+                    */
 
                     if (sub.get(subIndex).trim().equals("&nbsp;")) {
                         ui.setTextLabels(" ", " ");
@@ -183,6 +171,8 @@ public class SubThread implements Runnable {
                         return;
                     }
                 }
+
+                //SetText for info label
                 if (indicatorInfolabel) {
                     ui.infoLabel.setText("싱크: " + (timeControl / 1000) + "초");
                     if (counter.incrementAndGet() == 600) {
@@ -198,10 +188,60 @@ public class SubThread implements Runnable {
         }
     }
 
+    /**
+     * Convert currentTimeMillis to HH:MM:SS Form
+     *
+     * @param n :System.currentTimeMillis
+     * @return String n-> HH:MM:SS
+     */
+    String labelTimer(long n) {
+        n /= 1000;
+        return String.format("%02d:%02d:%02d", n / 3600, (n % 3600) / 60, (n % 3600) % 60);
+    }
+
+    void createButtonsForEasyStart() {
+
+        next = new AtomicBoolean(false);
+        ui.createButton(ui.exit.getX() - 90, ui.exit.getY() + ui.smallButtonSize.height, new Dimension(70, 35), "<이전", e -> {
+            if (subIndex > 0) {
+                if (subIndex > 1 && (sub.get(subIndex - 1).equals(" ") && subUnder.get(subIndex - 1).equals(" ")))
+                    subIndex -= 2;
+                else
+                    subIndex--;
+            }
+        });
+        ui.createButton(ui.exit.getX() - 20, ui.exit.getY() + ui.smallButtonSize.height, new Dimension(70, 35), "다음>", e -> {
+            if (subIndex < sub.size()) {
+                if (subIndex < sub.size() - 1 && (sub.get(subIndex + 1).equals(" ") && subUnder.get(subIndex + 1).equals(" ")))
+                    subIndex += 2;
+                else
+                    subIndex++;
+            }
+        });
+
+        ui.createButton(ui.exit.getX(), ui.exit.getY(), ui.smallButtonSize, "Go", e -> {
+            next.set(true);
+        });
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    /**
+     * Add paused time while opening the menu
+     *
+     * @param pauseTime : Period of pausetime(System.currentTimeMillis- (pauseStart = System.currentTimeMillis())
+     */
     public void addPauseTime(long pauseTime) {
         this.pauseTime += pauseTime;
     }
 
+    /**
+     * Display current sync information on Infolabel
+     *
+     * @param n : current Sync
+     */
     public void syncConrol(double n) {
         if (ui.isPlaying()) {
 
@@ -213,14 +253,21 @@ public class SubThread implements Runnable {
         }
     }
 
+    /**
+     * @return current PlayingTime(calculated)
+     */
     public long getPlayingTime() {
         return timeControl + playingTime - startTime - pauseTime;
     }
 
+    //setter for playiung time
     public void setPlayingtime(long playingTime) {
         this.playingTime = playingTime;
     }
 
+    /**
+     * set Index after playtime is changed.
+     */
     public void arrangeIndex() {
 
         for (int i = 0; i < timeStamp.size(); i++) {
