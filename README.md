@@ -2,8 +2,6 @@
 
 This program is a subtitle player programmed in Java.
 
-by Shin-yu,Choi
-
 # 사용법(How to Use)
 
 ![Introduction](https://github.com/shinyuchoi/sub/blob/master/Introduction.png)
