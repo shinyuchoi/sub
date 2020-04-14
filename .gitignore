@@ -1,2 +1,4 @@
 *.smi
 *.srt
+
+out/
