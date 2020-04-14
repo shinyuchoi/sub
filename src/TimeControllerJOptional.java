@@ -14,14 +14,14 @@ public class TimeControllerJOptional implements ActionListener {
 
     public TimeControllerJOptional(UI ui) {
         this.ui = ui;
-
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (ui.isPlaying()) {
+
+        if (ui.isPlaying() ) {
 
             pauseStart = System.currentTimeMillis();
 

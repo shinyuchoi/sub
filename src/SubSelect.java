@@ -13,7 +13,7 @@ public class SubSelect implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (ui.isPlaying()) {
+        if (ui.isPlaying() && ui.subThread.subRunning) {
             ui.setPlaying(false);
 
             UIManager.put("OptionPane.minimumSize", new Dimension(600, 500));

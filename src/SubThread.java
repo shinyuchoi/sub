@@ -16,7 +16,7 @@ public class SubThread implements Runnable {
 
     long playingTime;
     int subIndex;
-    boolean indicatorInfolabel;
+    boolean indicatorInfolabel, subRunning;
 
     SubThread(UI ui) {
         this.ui = ui;
@@ -38,6 +38,7 @@ public class SubThread implements Runnable {
 
     @Override
     public void run() {
+        subRunning = false;
         fileIO = new FileIO();
         try {
 
@@ -148,6 +149,7 @@ public class SubThread implements Runnable {
         ui.removeButtons();
         ui.infoLabel.setText("");
         counter.set(0);
+        subRunning = true;
         while (true) {
             try {
                 Thread.sleep(10);
