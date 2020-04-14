@@ -5,6 +5,7 @@
 
 # 사용된 외부 라이브러리
 
-juniversalchardet-2.3.1.jar - https://github.com/albfernandez/juniversalchardet
-multiline.jar - https://github.com/sasjo/multiline
+[juniversalchardet-2.3.1.jar](https://github.com/albfernandez/juniversalchardet)
+
+[multiline.jar](https://github.com/sasjo/multiline)
 
