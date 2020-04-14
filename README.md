@@ -1,4 +1,4 @@
-# How to use - 사용법
+# 사용법(How to Use)
 
 ![Introduction](https://github.com/shinyuchoi/sub/blob/master/Introduction.png)
 
@@ -16,7 +16,7 @@
 
 2. 감상
 
-# 실행에 필요한 자바 버전- 8.0
+# 실행에 필요한 자바 버전(Required Java Version) - 8.0
 
 [다운받기](https://www.java.com/de/download/)
 
